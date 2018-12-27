@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.example.hongu.btl.model.Cosmetic;
 import com.example.hongu.btl.model.Effect;
@@ -57,7 +56,7 @@ public class DBCosmeticManager extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(NAME, cosmetic.getName());
         values.put(PRICE, cosmetic.getPrice());
-        values.put(FUNCTION, cosmetic.getFunction());
+        values.put(FUNCTION, cosmetic.getEffect());
         values.put(TYPE, cosmetic.getType());
         db.insert(TABLE_NAME_COSMETIC, null, values);
         db.close();
@@ -65,7 +64,7 @@ public class DBCosmeticManager extends SQLiteOpenHelper {
 
     public List<Cosmetic> getAllCosmetics() {
         List<Cosmetic> listCos = new ArrayList<Cosmetic>();
-        String selectQuery = "SELECT * FROM " + TABLE_NAME_EFFECT;
+        String selectQuery = "SELECT * FROM " + TABLE_NAME_COSMETIC;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
@@ -74,7 +73,7 @@ public class DBCosmeticManager extends SQLiteOpenHelper {
                 cosmetic.setId(cursor.getInt(0));
                 cosmetic.setName(cursor.getString(1));
                 cosmetic.setPrice(cursor.getFloat(2));
-                cosmetic.setFunction(cursor.getString(3));
+                cosmetic.setEffect(cursor.getString(3));
                 cosmetic.setType(cursor.getString(4));
                 listCos.add(cosmetic);
             } while (cursor.moveToNext());
@@ -129,4 +128,24 @@ public class DBCosmeticManager extends SQLiteOpenHelper {
         db.close();
         return result;
     }
+
+    public int updateCosmetic(Cosmetic cosmetic){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(NAME,cosmetic.getName());
+        values.put(PRICE,cosmetic.getPrice());
+        values.put(FUNCTION,cosmetic.getEffect());
+        values.put(TYPE,cosmetic.getType());
+        return db.update(TABLE_NAME_COSMETIC,values,ID +"=?",
+                new String[] { String.valueOf(cosmetic.getId())});
+    }
+
+    public int deleteCosmetic( int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        int result = db.delete(TABLE_NAME_COSMETIC, ID + " = ?",
+                new String[] { String.valueOf(id) });
+        db.close();
+        return result;
+    }
+
 }

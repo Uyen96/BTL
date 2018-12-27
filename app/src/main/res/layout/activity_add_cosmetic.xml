@@ -10,14 +10,10 @@
         android:id="@+id/textView6"
         android:layout_width="142dp"
         android:layout_height="31dp"
-        android:layout_marginTop="@dimen/dp_8"
         android:text="@string/add_cosmetic"
         android:textSize="@dimen/sp_20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.528"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread_inside" />
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="8dp" />
 
     <EditText
         android:id="@+id/text_name"
@@ -53,7 +49,7 @@
         android:layout_width="@dimen/dp_350"
         android:layout_height="@dimen/dp_40"
 
-        android:hint="@string/function"
+        android:hint="@string/effect"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

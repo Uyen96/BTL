@@ -18,12 +18,6 @@ public class EffectAdapter extends RecyclerView.Adapter<EffectAdapter.ViewHolder
     private List<Effect> mEffects;
     public OnItemClickListener mListener;
 
-    public interface OnItemClickListener {
-        void onRowClicked(int position);
-
-        void onViewClicked(View v, int position);
-    }
-
     public void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
@@ -35,7 +29,8 @@ public class EffectAdapter extends RecyclerView.Adapter<EffectAdapter.ViewHolder
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.list_effect, viewGroup, false);
+        View view = LayoutInflater.from(mContext)
+                .inflate(R.layout.list_effect, viewGroup, false);
         return new ViewHolder(view);
     }
 

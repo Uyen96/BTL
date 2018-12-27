@@ -41,7 +41,7 @@ public class AddCosmeticActivity extends AppCompatActivity{
         setContentView(R.layout.activity_add_cosmetic);
         db = new DBCosmeticManager(this);
         mCosmetics = db.getAllCosmetics();
-        setAdapter();
+        //setAdapter();
         initView();
         registerListener();
     }
@@ -70,7 +70,7 @@ public class AddCosmeticActivity extends AppCompatActivity{
                         getResources().getText(R.string.mes_add_sucess), Toast.LENGTH_LONG).show();
                 mCosmetics.clear();
                 mCosmetics.addAll(db.getAllCosmetics());
-                setAdapter();
+                //setAdapter();
             }
         });
     }
@@ -93,15 +93,15 @@ public class AddCosmeticActivity extends AppCompatActivity{
         return cosmetic;
     }
 
-    public void setAdapter(){
-        if(mCosmeticAdapter == null){
-            mCosmeticAdapter = new CosmeticAdapter(this,
-                    R.layout.item_list_cosmetic,  mCosmetics);
-            mListViewCosmetic.setAdapter(mCosmeticAdapter);
-        }else{
-            mCosmeticAdapter.notifyDataSetChanged();
-            mListViewCosmetic.setSelection(mCosmeticAdapter.getCount()-1);
-        }
-        Log.d(TAG, "setAdapter: ");
-    }
+//    public void setAdapter(){
+//        if(mCosmeticAdapter == null){
+//            mCosmeticAdapter = new CosmeticAdapter(this,
+//                    R.layout.item_list_cosmetic,  mCosmetics);
+//            mListViewCosmetic.setAdapter(mCosmeticAdapter);
+//        }else{
+//            mCosmeticAdapter.notifyDataSetChanged();
+//            mListViewCosmetic.setSelection(mCosmeticAdapter.getCount()-1);
+//        }
+//        Log.d(TAG, "setAdapter: ");
+//    }
 }
