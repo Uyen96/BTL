@@ -1,15 +1,19 @@
 package com.example.hongu.btl.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.hongu.btl.R;
 import com.example.hongu.btl.model.Effect;
+import com.example.hongu.btl.screen.DetailActivity;
 
 import java.util.List;
 
@@ -38,6 +42,9 @@ public class EffectAdapter extends RecyclerView.Adapter<EffectAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int i) {
         viewHolder.binData(mEffects.get(i));
+        //Toast.makeText(mContext, mEffects.get(i), Toast.LENGTH_SHORT).show();
+        Log.d("Main", "onClick: clicked on: " +mEffects.get(i));
+
     }
 
     @Override
@@ -52,7 +59,7 @@ public class EffectAdapter extends RecyclerView.Adapter<EffectAdapter.ViewHolder
         public TextView mTextEffectDes;
         private ImageView mImageEffectEdit;
         private ImageView mImageEffectDelete;
-
+        private LinearLayout parentLayout;
         public ViewHolder(View itemView) {
             super(itemView);
             mTextEffectId = itemView.findViewById(R.id.list_text_effect_id);
@@ -60,6 +67,7 @@ public class EffectAdapter extends RecyclerView.Adapter<EffectAdapter.ViewHolder
             mTextEffectDes = itemView.findViewById(R.id.list_text_effect_description);
             mImageEffectEdit = itemView.findViewById(R.id.list_image_edit);
             mImageEffectDelete = itemView.findViewById(R.id.list_image_delete);
+            parentLayout = itemView.findViewById(R.id.parent_layout);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -96,10 +104,19 @@ public class EffectAdapter extends RecyclerView.Adapter<EffectAdapter.ViewHolder
             });
         }
 
-        public void binData(Effect effect) {
+        public void binData(final Effect effect) {
             mTextEffectId.setText(String.valueOf(effect.getId()));
             mTextEffectName.setText(effect.getName());
             mTextEffectDes.setText(effect.getDescription());
+
+//            parentLayout.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent intent = new Intent(mContext, DetailActivity.class);
+//                    intent.putExtra("title", effect.getName());
+//                    mContext.startActivity(intent);
+//                }
+//            });
         }
     }
 }

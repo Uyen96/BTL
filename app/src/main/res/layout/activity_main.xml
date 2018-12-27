@@ -10,20 +10,21 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycle_effect"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_325"
+        android:layout_height="418dp"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/fab"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="62dp"
-        tools:ignore="MissingConstraints"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"/>
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/image_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/dp_40"
+        android:layout_height="@dimen/dp_40"
         android:layout_marginStart="@dimen/dp_350"
         android:layout_marginLeft="@dimen/dp_350"
-        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/dp_8"
         android:layout_marginRight="@dimen/dp_8"
         android:layout_marginBottom="@dimen/dp_16"

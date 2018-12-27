@@ -19,7 +19,7 @@ public class DBCosmeticManager extends SQLiteOpenHelper {
     private static final String ID = "id";
     private static final String NAME = "name";
     private static final String PRICE = "price";
-    private static final String FUNCTION = "function";
+    private static final String EFFECT = "effect";
     private static final String TYPE = "type";
     private static final String DESCRIPTION = "description";
     private static final String[] COLUM_EFFECT = {ID, NAME, DESCRIPTION};
@@ -36,7 +36,7 @@ public class DBCosmeticManager extends SQLiteOpenHelper {
                 ID + " integer primary key, " +
                 NAME + " TEXT, " +
                 PRICE + " float, " +
-                FUNCTION + " TEXT," +
+                EFFECT + " TEXT," +
                 TYPE + " TEXT)";
         db.execSQL(sqlQuery);
         String sql = " CREATE TABLE " + TABLE_NAME_EFFECT + " (" +
@@ -56,7 +56,7 @@ public class DBCosmeticManager extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(NAME, cosmetic.getName());
         values.put(PRICE, cosmetic.getPrice());
-        values.put(FUNCTION, cosmetic.getEffect());
+        values.put(EFFECT, cosmetic.getEffect());
         values.put(TYPE, cosmetic.getType());
         db.insert(TABLE_NAME_COSMETIC, null, values);
         db.close();
@@ -134,7 +134,7 @@ public class DBCosmeticManager extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(NAME,cosmetic.getName());
         values.put(PRICE,cosmetic.getPrice());
-        values.put(FUNCTION,cosmetic.getEffect());
+        values.put(EFFECT,cosmetic.getEffect());
         values.put(TYPE,cosmetic.getType());
         return db.update(TABLE_NAME_COSMETIC,values,ID +"=?",
                 new String[] { String.valueOf(cosmetic.getId())});
@@ -148,4 +148,23 @@ public class DBCosmeticManager extends SQLiteOpenHelper {
         return result;
     }
 
+    public List<Cosmetic> getCosmeticByEffect(String str){
+        List<Cosmetic> list = new ArrayList<Cosmetic>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_NAME_COSMETIC,null,EFFECT +" = ?", new String[] { str }, null, null, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Cosmetic cosmetic = new Cosmetic();
+            cosmetic.setId(cursor.getInt(0));
+            cosmetic.setName(cursor.getString(1));
+            cosmetic.setPrice(cursor.getFloat(2));
+            cosmetic.setEffect(cursor.getString(3));
+            cosmetic.setType(cursor.getString(4));
+            list.add(cosmetic);
+            cursor.moveToNext();
+        }
+//        cursor.close();
+//        db.close();
+        return list;
+    }
 }
