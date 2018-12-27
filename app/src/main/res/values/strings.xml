@@ -5,7 +5,7 @@
     <string name="name">Tên</string>
     <string name="id">Mã</string>
     <string name="price">Giá</string>
-    <string name="function">Công dụng</string>
+    <string name="effect">Công dụng</string>
     <string name="water">Nước</string>
     <string name="capsule">Viên</string>
     <string name="powder">Bột</string>

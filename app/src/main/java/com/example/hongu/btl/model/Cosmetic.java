@@ -4,17 +4,17 @@ public class Cosmetic {
     private int mId;
     private String mName;
     private float mPrice;
-    private String mFunction;
+    private String mEffect;
     private String mType;
 
     public Cosmetic() {
 
     }
 
-    public Cosmetic(String name, float price, String function, String type) {
+    public Cosmetic(String name, float price, String effect, String type) {
         mName = name;
         mPrice = price;
-        mFunction = function;
+        mEffect = effect;
         mType = type;
     }
 
@@ -42,12 +42,12 @@ public class Cosmetic {
         mPrice = price;
     }
 
-    public String getFunction() {
-        return mFunction;
+    public String getEffect() {
+        return mEffect;
     }
 
-    public void setFunction(String function) {
-        mFunction = function;
+    public void setEffect(String effect) {
+        mEffect = effect;
     }
 
     public String getType() {

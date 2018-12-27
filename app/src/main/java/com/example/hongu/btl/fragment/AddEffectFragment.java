@@ -19,13 +19,14 @@ import android.widget.Toast;
 
 import com.example.hongu.btl.R;
 import com.example.hongu.btl.adapter.EffectAdapter;
+import com.example.hongu.btl.adapter.OnItemClickListener;
 import com.example.hongu.btl.data.DBCosmeticManager;
 import com.example.hongu.btl.data.TransactionDatabase;
 import com.example.hongu.btl.model.Effect;
 
 import java.util.List;
 
-public class AddEffectFragment extends Fragment implements EffectAdapter.OnItemClickListener {
+public class AddEffectFragment extends Fragment implements OnItemClickListener {
 
     private View mView;
     private EditText mTextNameEffect;
