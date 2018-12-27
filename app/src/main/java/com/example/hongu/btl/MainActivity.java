@@ -1,32 +1,81 @@
 package com.example.hongu.btl;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+
+import com.example.hongu.btl.adapter.EffectAdapter;
+import com.example.hongu.btl.data.DBCosmeticManager;
+import com.example.hongu.btl.model.Effect;
+import com.example.hongu.btl.screen.AddItemActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private RecyclerView mRecyclerEffect;
+    private ImageView mImageSearch;
+    private FloatingActionButton mActionButtonAdd;
+
+    private EffectAdapter mEffectAdapter;
+    private DBCosmeticManager mDB;
+    private List<Effect> mEffects;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        initView();
+        mDB = new DBCosmeticManager(this);
+        mEffects = mDB.getAllEffect();
+        mEffectAdapter = new EffectAdapter(this, mEffects);
+        mRecyclerEffect.setLayoutManager( new LinearLayoutManager(this));
+        mRecyclerEffect.setAdapter(mEffectAdapter);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+
+        Log.d("Main", " abc" + mEffects.size());
+        // initRecycle();
+        registerListener();
+    }
+
+    public void initView() {
+        mRecyclerEffect = findViewById(R.id.recycle_effect);
+        mImageSearch = findViewById(R.id.image_search);
+        mActionButtonAdd = findViewById(R.id.fab);
+    }
+
+//    public void initRecycle() {
+//       // List<Effect> effects = getData();
+//        if(effects == null){
+//            Log.d("MainActivity", "initRecycle: null");
+//        }
+//        else{
+//            EffectAdapter adapter = new EffectAdapter(this, effects);
+//            mRecyclerEffect.setHasFixedSize(true);
+//            mRecyclerEffect.setAdapter(adapter);
+//        }
+//
+//    }
+
+    public void registerListener() {
+        mActionButtonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddItemActivity.class);
+                startActivity(intent);
             }
         });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
