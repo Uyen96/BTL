@@ -14,24 +14,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hongu.btl.adapter.EffectAdapter;
 import com.example.hongu.btl.adapter.OnItemClickListener;
 import com.example.hongu.btl.data.DBCosmeticManager;
-import com.example.hongu.btl.fragment.AddEffectFragment;
 import com.example.hongu.btl.model.Effect;
 import com.example.hongu.btl.screen.AddItemActivity;
 import com.example.hongu.btl.screen.DetailActivity;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements OnItemClickListener, SearchView.OnQueryTextListener {
     private RecyclerView mRecyclerEffect;
-    private ImageView mImageSearch;
     private FloatingActionButton mActionButtonAdd;
+    private SearchView mSearchView;
 
     private EffectAdapter mEffectAdapter;
     private DBCosmeticManager mDB;
@@ -47,16 +46,16 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         mEffects = mDB.getAllEffect();
         mEffectAdapter = new EffectAdapter(this, mEffects);
         mEffectAdapter.setOnItemClickListener(this);
-        mRecyclerEffect.setLayoutManager( new LinearLayoutManager(this));
+        mRecyclerEffect.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerEffect.setAdapter(mEffectAdapter);
         registerListener();
     }
 
     public void initView() {
         mRecyclerEffect = findViewById(R.id.recycle_effect);
-        mImageSearch = findViewById(R.id.image_search);
         mActionButtonAdd = findViewById(R.id.fab);
     }
+
     public void registerListener() {
         mActionButtonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,13 +64,17 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
                 startActivity(intent);
             }
         });
+
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuItem itemSearch = menu.findItem(R.id.search);
+        mSearchView = (SearchView) itemSearch.getActionView();
+        mSearchView.setOnQueryTextListener(this);
         return true;
     }
 
@@ -111,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
     public void showDialogEdit(Effect effect) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.dialog_edit, null);
-        TextView textName = view.findViewById(R.id.dialog_edit);
+        //TextView textName = view.findViewById(R.id.dialog_edit);
         final TextView textId = view.findViewById(R.id.dialog_text_id);
         final EditText textNameEffect = view.findViewById(R.id.dialog_text_name_effect);
         final EditText textDesEffect = view.findViewById(R.id.dialog_text_des_effect);
@@ -167,9 +170,19 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         mEffectAdapter.notifyDataSetChanged();
     }
 
-    public void startDetailActivity(Effect effect){
+    public void startDetailActivity(Effect effect) {
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra("title", effect.getName());
         this.startActivity(intent);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
     }
 }

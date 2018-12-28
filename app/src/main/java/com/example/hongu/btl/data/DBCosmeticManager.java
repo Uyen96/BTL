@@ -151,7 +151,77 @@ public class DBCosmeticManager extends SQLiteOpenHelper {
     public List<Cosmetic> getCosmeticByEffect(String str){
         List<Cosmetic> list = new ArrayList<Cosmetic>();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.query(TABLE_NAME_COSMETIC,null,EFFECT +" = ?", new String[] { str }, null, null, null);
+        Cursor cursor = db.query(TABLE_NAME_COSMETIC,null, EFFECT +" LIKE ?",
+                new String[] { "%"+str+"%" }, null, null, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Cosmetic cosmetic = new Cosmetic();
+            cosmetic.setId(cursor.getInt(0));
+            cosmetic.setName(cursor.getString(1));
+            cosmetic.setPrice(cursor.getFloat(2));
+            cosmetic.setEffect(cursor.getString(3));
+            cosmetic.setType(cursor.getString(4));
+            list.add(cosmetic);
+            cursor.moveToNext();
+        }
+//        cursor.close();
+//        db.close();
+        return list;
+    }
+
+    public List<Cosmetic> getCosmeticByName(String name){
+        List<Cosmetic> list = new ArrayList<Cosmetic>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_NAME_COSMETIC,null,NAME +" = ?", new String[] { "%"+name+"%" }, null, null, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Cosmetic cosmetic = new Cosmetic();
+            cosmetic.setId(cursor.getInt(0));
+            cosmetic.setName(cursor.getString(1));
+            cosmetic.setPrice(cursor.getFloat(2));
+            cosmetic.setEffect(cursor.getString(3));
+            cosmetic.setType(cursor.getString(4));
+            list.add(cosmetic);
+            cursor.moveToNext();
+        }
+//        cursor.close();
+//        db.close();
+        return list;
+    }
+    public List<String> getName(){
+        List<String> list = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_NAME_COSMETIC,
+                null,null, null, null, null, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            list.add(cursor.getString(2));
+            cursor.moveToNext();
+        }
+//        cursor.close();
+//        db.close();
+        return list;
+    }
+    public List<String> getType(){
+        List<String> list = new ArrayList<>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_NAME_COSMETIC,
+                null,null, null, null, null, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            list.add(cursor.getString(4));
+            cursor.moveToNext();
+        }
+//        cursor.close();
+//        db.close();
+        return list;
+    }
+
+    public List<Cosmetic> getCosmeticByType(String type){
+        List<Cosmetic> list = new ArrayList<Cosmetic>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_NAME_COSMETIC,null,TYPE +" = ?",
+                new String[] { "%"+type+"%" }, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             Cosmetic cosmetic = new Cosmetic();

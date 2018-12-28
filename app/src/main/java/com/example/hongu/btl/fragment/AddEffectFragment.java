@@ -118,7 +118,7 @@ public class AddEffectFragment extends Fragment implements OnItemClickListener {
     public void showDialogEdit(Effect effect) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         View view = getLayoutInflater().inflate(R.layout.dialog_edit, null);
-        TextView textName = view.findViewById(R.id.dialog_edit);
+//        TextView textName = view.findViewById(R.id.dialog_edit);
         final TextView textId = view.findViewById(R.id.dialog_text_id);
         final EditText textNameEffect = view.findViewById(R.id.dialog_text_name_effect);
         final EditText textDesEffect = view.findViewById(R.id.dialog_text_des_effect);

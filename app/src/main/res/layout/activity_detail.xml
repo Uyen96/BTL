@@ -4,22 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screen.DetailActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".screen.DetailActivity">
 
-    <TextView
-        android:id="@+id/text_title_detail_activity"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_150" />
+        android:layout_height="@dimen/dp_100"
+        android:orientation="horizontal"
+        android:background="@color/color_range">
+
+        <TextView
+            android:id="@+id/text_title_detail_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_100"
+            android:gravity="center"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/sp_20"
+            android:layout_weight="9"/>
+    </LinearLayout>
+
     <TextView
         android:id="@+id/text_mes_detail_activity"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_40"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/color_black"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list_recycle_cos_detail_activity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager">
-    </android.support.v7.widget.RecyclerView>
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 </LinearLayout>

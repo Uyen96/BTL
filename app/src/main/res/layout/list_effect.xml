@@ -1,43 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:id="@+id/parent_layout">
+    android:padding="@dimen/dp_8">
+
+    <TextView
+        android:id="@+id/list_text_effect_id"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_100"
+        android:background="@color/color_range_100"
+        android:textColor="@color/color_black"
+        android:textSize="@dimen/sp_20"
+        android:gravity="center"
+        android:padding="@dimen/dp_8"/>
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_100"
+        android:layout_weight="3"
         android:orientation="vertical"
-        android:layout_weight="12">
+        android:paddingLeft="@dimen/dp_8">
+
         <TextView
-            android:id="@+id/list_text_effect_id"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/name"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/sp_14"
+            android:text="@string/description"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dp_100"
+        android:layout_weight="7"
+        android:orientation="vertical">
+
         <TextView
             android:id="@+id/list_text_effect_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/sp_14" />
+
         <TextView
             android:id="@+id/list_text_effect_description"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/sp_14" />
     </LinearLayout>
+
     <ImageView
         android:id="@+id/list_image_edit"
         android:layout_width="@dimen/dp_20"
         android:layout_height="@dimen/dp_20"
-        android:src="@drawable/icon_edit"
+        android:layout_gravity="center"
         android:layout_weight="1"
-        android:layout_gravity="center"/>
+        android:src="@drawable/icon_edit" />
+
     <ImageView
         android:id="@+id/list_image_delete"
         android:layout_width="@dimen/dp_20"
         android:layout_height="@dimen/dp_20"
-        android:src="@drawable/icon_delete"
+        android:layout_gravity="center"
         android:layout_weight="1"
-        android:layout_gravity="center"/>
-
+        android:src="@drawable/icon_delete" />
 
 
 </LinearLayout>

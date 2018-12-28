@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/dialog_edit"
-        android:layout_width="@dimen/dp_100"
+        android:layout_width="@dimen/dp_200"
         android:layout_height="@dimen/dp_40"
         android:layout_marginStart="@dimen/dp_8"
         android:layout_marginLeft="@dimen/dp_8"
@@ -16,8 +15,10 @@
         android:layout_marginEnd="@dimen/dp_8"
         android:layout_marginRight="@dimen/dp_8"
         android:layout_marginBottom="@dimen/dp_8"
-        android:text="@string/edit"
         android:gravity="center"
+        android:text="@string/edit"
+        android:textColor="@color/color_black"
+        android:textSize="@dimen/sp_20"
         app:layout_constraintBottom_toTopOf="@+id/dialog_text_id"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.411"
@@ -33,7 +34,10 @@
         android:layout_marginEnd="@dimen/dp_8"
         android:layout_marginRight="@dimen/dp_8"
         android:layout_marginBottom="@dimen/dp_8"
+        android:gravity="center"
         android:text="@string/id"
+        android:textColor="@color/color_black"
+        android:textSize="@dimen/sp_14"
         app:layout_constraintBottom_toTopOf="@+id/dialog_text_name_effect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -47,6 +51,8 @@
         android:layout_marginEnd="@dimen/dp_8"
         android:layout_marginRight="@dimen/dp_8"
         android:layout_marginBottom="@dimen/dp_8"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/color_black"
         app:layout_constraintBottom_toTopOf="@+id/dialog_text_des_effect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.418"
@@ -64,7 +70,9 @@
         app:layout_constraintBottom_toTopOf="@+id/dialog_button_edit_effect"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/color_black"/>
 
     <Button
         android:id="@+id/dialog_button_edit_effect"
@@ -75,9 +83,9 @@
         android:layout_marginEnd="@dimen/dp_8"
         android:layout_marginRight="@dimen/dp_8"
         android:layout_marginBottom="@dimen/dp_200"
-        android:text=   "@string/button_edit"
+        android:background="@color/color_range"
+        android:text="@string/button_edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/color_accent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

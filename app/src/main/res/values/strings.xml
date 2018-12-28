@@ -23,5 +23,6 @@
     <string name="mes_del">Xóa thành công!</string>
     <string name="mes_update_success">Cập nhật thành công!</string>
     <string name="mes_update_fail">Cập nhật thất bại</string>
-    <string name="mes_null">Không có mỹ phẩm có công dụng</string>
+    <string name="mes_null">Không có mỹ phẩm có công dụng </string>
+    <string name="search">Tìm kiếm</string>
 </resources>

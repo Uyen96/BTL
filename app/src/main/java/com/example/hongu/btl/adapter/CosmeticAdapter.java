@@ -12,12 +12,15 @@ import android.widget.TextView;
 import com.example.hongu.btl.R;
 import com.example.hongu.btl.model.Cosmetic;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class CosmeticAdapter extends RecyclerView.Adapter<CosmeticAdapter.CosmeticViewHolder> {
     private Context mContext;
     private List<Cosmetic> mCosmetics;
+    private List<Cosmetic> mList;
 
     public OnItemClickListener mListener;
 
@@ -28,6 +31,8 @@ public class CosmeticAdapter extends RecyclerView.Adapter<CosmeticAdapter.Cosmet
     public CosmeticAdapter(Context context, List<Cosmetic> cosmetics){
         mContext = context;
         mCosmetics = cosmetics;
+        this.mList = new ArrayList<Cosmetic>();
+        mList.addAll(mCosmetics);
     }
 
     @NonNull
@@ -50,7 +55,6 @@ public class CosmeticAdapter extends RecyclerView.Adapter<CosmeticAdapter.Cosmet
     }
 
     public class CosmeticViewHolder extends RecyclerView.ViewHolder {
-        private ImageView mImageCos;
         private TextView mTextIdCos;
         private TextView mTextNameCos;
         private TextView mTextPriceCos;
@@ -61,7 +65,6 @@ public class CosmeticAdapter extends RecyclerView.Adapter<CosmeticAdapter.Cosmet
 
         public CosmeticViewHolder(@NonNull View itemView) {
             super(itemView);
-            mImageCos = itemView.findViewById(R.id.image_item_cosmetic);
             mTextIdCos = itemView.findViewById(R.id.text_item_id);
             mTextNameCos = itemView.findViewById(R.id.text_item_name);
             mTextPriceCos = itemView.findViewById(R.id.text_item_price);
@@ -106,19 +109,27 @@ public class CosmeticAdapter extends RecyclerView.Adapter<CosmeticAdapter.Cosmet
 
         public void binData(Cosmetic cosmetic){
             mTextIdCos.setText(String.valueOf(cosmetic.getId()));
-            mTextNameCos.setText(cosmetic.getName());
-            mTextPriceCos.setText(String.valueOf(cosmetic.getPrice()));
-            mTextEffectCos.setText(cosmetic.getEffect());
-            mTextTypeCos.setText(cosmetic.getType());
-            if(cosmetic.getType() == "Nước"){
-                mImageCos.setImageResource(R.mipmap.ic_launcher);
-            }
-            if(cosmetic.getType() == "Bột"){
-                mImageCos.setImageResource(R.drawable.bot);
-            }
-            if(cosmetic.getType() == "Viên"){
-               mImageCos.setImageResource(R.drawable.vien);
+            mTextNameCos.setText(": "+cosmetic.getName());
+            mTextPriceCos.setText(": "+String.valueOf(cosmetic.getPrice()));
+            mTextEffectCos.setText(": "+cosmetic.getEffect());
+            mTextTypeCos.setText(": "+cosmetic.getType());
+
+        }
+    }
+
+    public void filter(String text){
+        text = text.toLowerCase(Locale.getDefault());
+        mCosmetics.clear();
+        if(text.length() == 0){
+            mCosmetics.addAll(mList);
+        }
+        else {
+            for( Cosmetic cosmetic : mList){
+                if(cosmetic.getType().toLowerCase().contains(text.toLowerCase())){
+                    mCosmetics.add(cosmetic);
+                }
             }
         }
+        notifyDataSetChanged();
     }
 }
